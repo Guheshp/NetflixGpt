@@ -6,7 +6,7 @@ import { auth } from '../utils/Firebase.config';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser, removeUser } from '../utils/userSlice';
-
+import { USER_AVATAR } from '../utils/constant';
 const Login = () => {
     const [signInForm, setSignInForm] = useState(true); // State to toggle between Sign In and Sign Up
     const name = useRef(null); // Ref for name input field
@@ -36,7 +36,7 @@ const Login = () => {
 
                     updateProfile(user, {
                         displayName: name.current.value,
-                        photoURL: "https://avatars.githubusercontent.com/u/137211232?v=4"
+                        photoURL: USER_AVATAR
                     }).then(() => {
                         // Profile updated!
                         const { uid, email, displayName, photoURL } = auth.currentUser;

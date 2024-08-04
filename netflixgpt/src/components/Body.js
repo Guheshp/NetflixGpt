@@ -6,7 +6,6 @@ import Browse from './Browse'
 const Body = () => {
     return (
         <div>
-
         </div>
     )
 }

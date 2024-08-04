@@ -8,31 +8,9 @@ import Browse from './components/Browse';
 import { RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import AppStore from './utils/AppStore';
-import Body from './components/Body';
-import { useDispatch } from 'react-redux'
-import { onAuthStateChanged } from 'firebase/auth';
-import { addUser, removeUser } from './utils/userSlice';
-import { auth } from './utils/Firebase.config';
+
 
 function AppLayout() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/auth.user
-        const { uid, email, displayName, photoURL } = user;
-        dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
-      } else {
-        // User is signed out
-        dispatch(removeUser());
-        navigate("/")
-      }
-    });
-  }, [dispatch]);
-
   return (
     <Outlet />
   );
